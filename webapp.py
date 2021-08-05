@@ -11,6 +11,13 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 user_input = None
 
 
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('index'))
+
+
+
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -93,6 +100,7 @@ def index():
     return render_template("index.html")
 
 @app.route('/predict', methods=['GET', 'POST'])
+@login_required
 def upload():
     if request.method == 'POST':
         # Get the file from post request
@@ -107,6 +115,11 @@ def upload():
         os.remove(file_path)
         return result
     return None
+
+@app.route("/predict")
+@login_required
+def predict():
+    return render_template("index2.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
