@@ -1,15 +1,21 @@
-
 <html lang="en">
 
+<head>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Traffic Signs Classification</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
 </head>
+
+</head>
 <body>
-<h2>Upload Traffic Signs</h2>
+<h2>Traffic Signs Classification</h2>
 <style> .footer {
    position: fixed;
    left: 0;
@@ -23,7 +29,7 @@
 }</style>
 
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="/" >Volt Motor</a>
+
             <div class="navbar-header">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
@@ -41,17 +47,17 @@
         <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
     </form>
 
-    <div class="image-section" style="display:flex;justify-content: center;">
+    <div class="image-section" style="display:flex;justify-content: left;">
         <div class="img-preview">
             <div id="imagePreview">
             </div>
         </div>
         <div>
-            <button type="button" class="btn btn-primary btn-lg " style="display:flex;justify-content: center;" id="btn-predict">Predict Traffic Sign </button>
+            <button type="button" class="btn btn-primary btn-lg " style="display:flex;justify-content: left;" id="btn-predict">Predict Traffic Sign </button>
         </div>
     </div>
 
-    <div class="loader" style="display:flex;justify-content: center;"></div>
+    <div class="loader" style="display:flex;justify-content: left;"></div>
 
     <h3 class="headingStyle" id="result">
         <span> </span>
