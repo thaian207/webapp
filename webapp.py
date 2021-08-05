@@ -1,6 +1,7 @@
-from flask import *
+import flask
 import os
 from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from keras.models import load_model
 import numpy as np
 from PIL import Image
@@ -97,7 +98,7 @@ def image_processing(img):
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    return flask.render_template("index.html")
 
 @app.route('/predict', methods=['GET', 'POST'])
 @login_required
@@ -120,6 +121,9 @@ def upload():
 @login_required
 def predict():
     return render_template("index2.html")
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
