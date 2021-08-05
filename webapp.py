@@ -112,7 +112,7 @@ def upload():
         result = image_processing(file_path)
         s = [str(i) for i in result]
         a = int("".join(s))
-        result = "Predicted Traffic🚦Sign is: " +classes[a]
+        result = "Predicted Traffic Sign is: " +classes[a]
         os.remove(file_path)
         return result
     return None
