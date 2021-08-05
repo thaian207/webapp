@@ -120,7 +120,7 @@ def upload():
 @app.route("/predict")
 @login_required
 def predict():
-    return render_template("index2.html")
+    return render_template("index.html")
 
 
 
