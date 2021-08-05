@@ -5,7 +5,9 @@ from keras.models import load_model
 import numpy as np
 from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+user_input = None
 
 
 def login_required(f):
