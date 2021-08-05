@@ -33,7 +33,7 @@ def login():
     error = None
     if request.method == 'POST':
         if request.form['username'] != 'username' or request.form['password'] != 'password':
-            error = 'Wrong username or password. Please try again.'
+            error = 'Invalid Username/Password. Try again.'
         else:
             session['logged_in'] = True
             return redirect(url_for('index'))
@@ -86,7 +86,7 @@ classes = { 0:'Speed limit (20km/h)',
             42:'End no passing vehicle > 3.5 tons' }
 
 def image_processing(img):
-    model = load_model('./model/traffic_models.h5')
+    model = load_model('./model/TSR.h5')
     data=[]
     image = Image.open(img)
     image = image.resize((30,30))
