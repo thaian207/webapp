@@ -7,6 +7,28 @@ from PIL import Image
 
 app = Flask(__name__)
 
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return wrap
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'username' or request.form['password'] != 'password':
+            error = 'Wrong username or password. Please try again.'
+        else:
+            session['logged_in'] = True
+            return redirect(url_for('index'))
+    return render_template('login.html', error=error)
+
+
 # Classes of trafic signs
 classes = { 0:'Speed limit (20km/h)',
             1:'Speed limit (30km/h)',
@@ -53,7 +75,7 @@ classes = { 0:'Speed limit (20km/h)',
             42:'End no passing vehicle > 3.5 tons' }
 
 def image_processing(img):
-    model = load_model('./model/TS.h5')
+    model = load_model('./model/TSR.h5')
     data=[]
     image = Image.open(img)
     image = image.resize((30,30))
@@ -62,9 +84,10 @@ def image_processing(img):
     Y_pred = model.predict_classes(X_test)
     return Y_pred
 
-@app.route('/')
+@app.route("/")
+@login_required
 def index():
-    return render_template('index.html')
+    return flask.render_template("index.html")
 
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
