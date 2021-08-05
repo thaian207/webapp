@@ -117,6 +117,14 @@ def upload():
         return result
     return None
 
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    return flask.render_template("dashboard.html")
+
+
+
 @app.route("/predict")
 @login_required
 def predict():
